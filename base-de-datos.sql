@@ -58,19 +58,53 @@ CREATE TABLE USUARIO(
     usuario_hora time,
     usuario_pais_id serial,
     usuario_ciudad_id serial,
-    usuario_musica_id serial,
-    usuario_deporte_id serial,
-    usuario_hobby_id serial,
 
 CONSTRAINT pais_FK FOREIGN KEY (usuario_pais_id) REFERENCES PAIS (pais_id)
     ON DELETE RESTRICT ON UPDATE CASCADE,
 CONSTRAINT ciudad_FK FOREIGN KEY (usuario_ciudad_id) REFERENCES CIUDAD (ciudad_id)
+    ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+
+/*==============================================================*/
+/* Tabla: HOBBYUSUARIO                                          */
+/*==============================================================*/
+CREATE TABLE HOBBYUSUARIO(
+    hobbyusuario_id serial PRIMARY KEY,
+    hobbyusuario_hobby_id serial,
+    hobbyusuario_usuario_id serial,
+
+CONSTRAINT pais_FK FOREIGN KEY (hobbyusuario_hobby_id) REFERENCES HOBBY (hobby_id)
     ON DELETE RESTRICT ON UPDATE CASCADE,
-CONSTRAINT musica_FK FOREIGN KEY (usuario_musica_id) REFERENCES MUSICA (musica_id)
+CONSTRAINT ciudad_FK FOREIGN KEY (hobbyusuario_usuario_id) REFERENCES   USUARIO (usuario_id)
+    ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+/*==============================================================*/
+/* Tabla: DEPORTEUSUARIO                                        */
+/*==============================================================*/
+CREATE TABLE DEPORTEUSUARIO(
+    deporteusuario_id serial PRIMARY KEY,
+    deporteusuario_deporte_id serial,
+    deporteusuario_usuario_id serial,
+
+CONSTRAINT pais_FK FOREIGN KEY (deporteusuario_deporte_id) REFERENCES DEPORTE (deporte_id)
     ON DELETE RESTRICT ON UPDATE CASCADE,
-CONSTRAINT deporte_FK FOREIGN KEY (usuario_deporte_id) REFERENCES DEPORTE (deporte_id)
+CONSTRAINT ciudad_FK FOREIGN KEY (deporteusuario_usuario_id) REFERENCES USUARIO (usuario_id)
+    ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+/*==============================================================*/
+/* Tabla: MUSICAUSUARIO                                         */
+/*==============================================================*/
+CREATE TABLE MUSICAUSUARIO(
+    musicausuario_id serial PRIMARY KEY,
+    musicausuario_musica_id serial,
+    musicausuario_usuario_id serial,
+
+CONSTRAINT pais_FK FOREIGN KEY (musicausuario_musica_id) REFERENCES MUSICA (musica_id)
     ON DELETE RESTRICT ON UPDATE CASCADE,
-CONSTRAINT hobby_FK FOREIGN KEY (usuario_hobby_id) REFERENCES HOBBY (hobby_id)
+CONSTRAINT ciudad_FK FOREIGN KEY (musicausuario_usuario_id) REFERENCES USUARIO (usuario_id)
     ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
