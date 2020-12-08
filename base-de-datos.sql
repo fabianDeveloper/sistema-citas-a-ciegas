@@ -74,9 +74,9 @@ CREATE TABLE HOBBYUSUARIO(
     hobbyusuario_hobby_id serial,
     hobbyusuario_usuario_id serial,
 
-CONSTRAINT pais_FK FOREIGN KEY (hobbyusuario_hobby_id) REFERENCES HOBBY (hobby_id)
+CONSTRAINT hu_hobby_FK FOREIGN KEY (hobbyusuario_hobby_id) REFERENCES HOBBY (hobby_id)
     ON DELETE RESTRICT ON UPDATE CASCADE,
-CONSTRAINT ciudad_FK FOREIGN KEY (hobbyusuario_usuario_id) REFERENCES   USUARIO (usuario_id)
+CONSTRAINT hu_usuario_FK FOREIGN KEY (hobbyusuario_usuario_id) REFERENCES USUARIO (usuario_id)
     ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
@@ -88,9 +88,9 @@ CREATE TABLE DEPORTEUSUARIO(
     deporteusuario_deporte_id serial,
     deporteusuario_usuario_id serial,
 
-CONSTRAINT pais_FK FOREIGN KEY (deporteusuario_deporte_id) REFERENCES DEPORTE (deporte_id)
+CONSTRAINT du_deporte_FK FOREIGN KEY (deporteusuario_deporte_id) REFERENCES DEPORTE (deporte_id)
     ON DELETE RESTRICT ON UPDATE CASCADE,
-CONSTRAINT ciudad_FK FOREIGN KEY (deporteusuario_usuario_id) REFERENCES USUARIO (usuario_id)
+CONSTRAINT du_usuario_FK FOREIGN KEY (deporteusuario_usuario_id) REFERENCES USUARIO (usuario_id)
     ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
@@ -102,9 +102,9 @@ CREATE TABLE MUSICAUSUARIO(
     musicausuario_musica_id serial,
     musicausuario_usuario_id serial,
 
-CONSTRAINT pais_FK FOREIGN KEY (musicausuario_musica_id) REFERENCES MUSICA (musica_id)
+CONSTRAINT mu_musica_FK FOREIGN KEY (musicausuario_musica_id) REFERENCES MUSICA (musica_id)
     ON DELETE RESTRICT ON UPDATE CASCADE,
-CONSTRAINT ciudad_FK FOREIGN KEY (musicausuario_usuario_id) REFERENCES USUARIO (usuario_id)
+CONSTRAINT mu_usuario_FK FOREIGN KEY (musicausuario_usuario_id) REFERENCES USUARIO (usuario_id)
     ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
@@ -143,6 +143,6 @@ CONSTRAINT cita_id_FK FOREIGN KEY (calificacion_cita_id) REFERENCES CITA (cita_i
 
 /*==============================================================*/
 /* Vista: PAREJA                                                */
-/*=============================================================*/
+/*==============================================================*/
 create view PAREJA as
-select usuario_id as id_dos, usuario_nombre as usuario_dos FROM  usuario;
+select usuario_id as id_dos, usuario_nombre as usuario_dos FROM usuario;
